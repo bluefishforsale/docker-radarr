@@ -7,8 +7,6 @@ LOCALDIR="/data01/services/${SERVICE}"
 DOWNLOADS="/data01/incoming/movies"
 COMPLETE="/data01/complete/movies"
 
-test  -d ${LOCALDIR}  || mkdir -p ${LOCALDIR}
-
 docker stop ${SERVICE}
 docker rm ${SERVICE}
 
