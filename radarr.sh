@@ -17,7 +17,7 @@ sudo docker run -d \
   --name=${SERVICE} \
   --hostname=${HOSTNAME} \
   -v /etc/localtime:/etc/localtime:ro \
-  -p 7878:7878 \
+  -p 8903:7878 \
   -e PUID=1001 -e PGID=1001 \
   -v ${LOCALDIR}:/config \
   -v ${DOWNLOADS}:/downloads \
