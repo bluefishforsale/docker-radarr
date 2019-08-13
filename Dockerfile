@@ -1,4 +1,4 @@
-FROM lsiobase/mono
+FROM lsiobase/mono:amd64-xenial-5.14
 MAINTAINER sparklyballs
 
 # environment settings
@@ -11,13 +11,12 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 
 # install radarr
 RUN \
- radarr_tag=$(curl -sX GET "https://api.github.com/repos/Radarr/Radarr/releases" \
-	| awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  RADARR_DL_URL=$(curl -sX GET "https://api.github.com/repos/Radarr/Radarr/releases" | grep browser_download_url | head -n5 | grep linux | head -n1 | awk '{print $NF}' | xargs) ; \
  mkdir -p \
 	/opt/radarr && \
  curl -o \
  /tmp/radar.tar.gz -L \
-	"https://github.com/galli-leo/Radarr/releases/download/${radarr_tag}/Radarr.develop.${radarr_tag#v}.linux.tar.gz" && \
+	"${RADARR_DL_URL}" && \
  tar ixzf \
  /tmp/radar.tar.gz -C \
 	/opt/radarr --strip-components=1 && \
@@ -30,5 +29,5 @@ RUN \
 COPY /root /
 
 # ports and volumes
-EXPOSE 7878
+EXPOSE 8903
 VOLUME /config /downloads /movies
