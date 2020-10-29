@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 SERVICE="radarr"
-IMAGE="bluefishforsale/radarr"
-VERSION="latest"
+#IMAGE="bluefishforsale/radarr"
+IMAGE="linuxserver/radarr"
+#VERSION="nightly"
+VERSION="amd64-0.2.0.1540-ls21"
 LOCALDIR="/data01/services/${SERVICE}"
 DOWNLOADS="/data01/incoming/movies"
 COMPLETE="/data01/complete/movies"
